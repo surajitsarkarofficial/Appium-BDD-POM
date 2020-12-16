@@ -19,17 +19,26 @@ public class ServerManager {
 
     public void startServer()
     {
-        utils.log().info("Starting appium server...");
-        AppiumDriverLocalService localServer = getMACAppiumServer();
-        localServer.start();
-        if(localServer==null || !localServer.isRunning())
+        AppiumDriverLocalService localServer=null;
+        try {
+            utils.log().info("Starting appium server...");
+             localServer = getMACAppiumServer();
+            localServer.start();
+            if (localServer == null || !localServer.isRunning()) {
+                utils.log().fatal("Appium server not started.. ABORT!!!");
+                throw new AppiumServerHasNotBeenStartedLocallyException("Appium server not started.. ABORT!!!");
+            }
+            //localServer.clearOutPutStreams();
+            server.set(localServer);
+            utils.log().info("Appium server started...");
+        }catch(Exception e)
         {
-            utils.log().fatal("Appium server not started.. ABORT!!!");
-            throw new AppiumServerHasNotBeenStartedLocallyException("Appium server not started.. ABORT!!!");
+            if(localServer!=null)
+            {
+                localServer.stop();
+            }
+            throw e;
         }
-        //localServer.clearOutPutStreams();
-        server.set(localServer);
-        utils.log().info("Appium server started...");
     }
 
 
@@ -51,7 +60,7 @@ public class ServerManager {
         return AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
         .usingAnyFreePort()
         .withArgument(GeneralServerFlag.SESSION_OVERRIDE)
-        .withLogFile(new File(params.getPlatformName()+"_"
+        .withLogFile(new File("target" + File.separator+"logs"+File.separator+ params.getPlatformName()+"_"
         + params.getDeviceName()+ File.separator+"Server.log")));
     }
 
@@ -70,7 +79,7 @@ public class ServerManager {
                 .usingAnyFreePort()
                 .withArgument(GeneralServerFlag.SESSION_OVERRIDE)
                 .withEnvironment(environment)
-                .withLogFile(new File(params.getPlatformName()+"_"
+                .withLogFile(new File("target" + File.separator+"logs"+File.separator+ params.getPlatformName()+"_"
                         + params.getDeviceName()+ File.separator+"Server.log")));
     }
 }

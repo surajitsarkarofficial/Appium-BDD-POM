@@ -9,7 +9,7 @@
         <Route>
     		<RollingFile
     			name="appender-${ctx:ROUTINGKEY}"
-    			fileName="${ctx:ROUTINGKEY}/application.log"
+    			fileName="target/logs/${ctx:ROUTINGKEY}/application.log"
     			filePattern="${ctx:ROUTINGKEY}/$${date:yyyy-MM-dd}/application-%d{yyyy-MM-dd}-%i.log">
     			<PatternLayout>
         			<Pattern>[${ctx:ROUTINGKEY} %-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %c{1}:%L - %m%n</Pattern>
