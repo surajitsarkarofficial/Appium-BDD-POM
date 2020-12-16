@@ -17,12 +17,23 @@ public class ServerManager {
         return server.get();
     }
 
-    public void startServer()
-    {
+    public void startServer() throws Exception {
         AppiumDriverLocalService localServer=null;
         try {
             utils.log().info("Starting appium server...");
-             localServer = getMACAppiumServer();
+            String os = System.getProperty("os.name");
+            if(os.contains("Windows"))
+            {
+                utils.log().info("Starting appium server on Windows.");
+                localServer=getWindowsAppiumServer();
+            }
+            else if(os.contains("Mac")){
+                utils.log().info("Starting appium server on MAC OS.");
+                localServer = getMACAppiumServer();
+            }else{
+                utils.log().fatal("Unsupported OS. ABORT!!!");
+                throw new Exception("Unsupported OS. ABORT!!!");
+            }
             localServer.start();
             if (localServer == null || !localServer.isRunning()) {
                 utils.log().fatal("Appium server not started.. ABORT!!!");
@@ -54,7 +65,7 @@ public class ServerManager {
      * This method will start the appium server
      * @return AppiumDriverLocalService
      */
-    public AppiumDriverLocalService WindowsGetAppiumServer()
+    public AppiumDriverLocalService getWindowsAppiumServer()
     {
         GlobalParams params = new GlobalParams();
         return AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
