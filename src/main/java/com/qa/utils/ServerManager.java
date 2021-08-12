@@ -82,11 +82,11 @@ public class ServerManager {
     public AppiumDriverLocalService getMACAppiumServer() {
         GlobalParams params = new GlobalParams();
         HashMap<String, String> environment = new HashMap<String, String>();
-        environment.put("PATH", "/usr/local/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/bin=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/surajit.sarkar/apache-maven-3.6.3/bin:/Users/surajit.sarkar/Library/Android/sdk/tools:/Users/surajit.sarkar/Library/Android/sdk/platform-tools:/Users/surajit.sarkar/Library/Android/sdk/build-tools" + System.getenv("PATH"));
-        environment.put("ANDROID_HOME", "/Users/surajit.sarkar/Library/Android/sdk");
+        environment.put("PATH", "/usr/local/bin:/Library/Java/JavaVirtualMachines/jdk-15.0.1.jdk/Contents/Home/bin=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/suro/apache-maven-3.8.1/bin:/Users/suro/Library/Android/sdk/tools:/Users/suro/Library/Android/sdk/platform-tools:/Users/suro/Library/Android/sdk/build-tools" + System.getenv("PATH"));
+        environment.put("ANDROID_HOME", "/Users/suro/Library/Android/sdk");
         return AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
                 .usingDriverExecutable(new File("/usr/local/bin/node"))
-                .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js"))
+                .withAppiumJS(new File("/Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"))
                 .usingAnyFreePort()
                 .withArgument(GeneralServerFlag.SESSION_OVERRIDE)
                 .withEnvironment(environment)

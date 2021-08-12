@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="tests">
-	<test name="Android">
+	<!--<test name="Android">
 		<parameter name="platformName" value="Android" />
 		<parameter name="udid" value="emulator-5554" />
 		<parameter name="deviceName" value="Pixel3" />
@@ -10,11 +10,11 @@
 		<classes>
 			<class name="com.qa.runners.MyTestNGAndroidRunnerTest"></class>
 		</classes>
-	</test>
+	</test>-->
 	<test name="iOS">
 		<parameter name="platformName" value="iOS" />
-		<parameter name="udid" value="58368152-2D59-4838-8467-A8D835340509" />
-		<parameter name="deviceName" value="iPhone 11" />
+		<parameter name="udid" value="A67D05C5-39DD-49EC-B084-29D4C67F3B57" />
+		<parameter name="deviceName" value="iiPhone 12 Pro Max" />
 		<parameter name="wdaLocalPort" value="10001" />
 		<parameter name="webkitDebugProxyPort" value="11001" />
 		<classes>

@@ -68,9 +68,9 @@ public class GlobalParams {
 
     public void initGlobalParams(){
         GlobalParams params = new GlobalParams();
-        params.setPlatformName(System.getProperty("platformName","Android"));
-        params.setDeviceName(System.getProperty("deviceName","Pixel_3"));
-        params.setUdid(System.getProperty("udid","emulator-5554"));
+        params.setPlatformName(System.getProperty("platformName","iOS"));
+        params.setDeviceName(System.getProperty("deviceName","iPhone 12 Pro Max"));
+        params.setUdid(System.getProperty("udid","A67D05C5-39DD-49EC-B084-29D4C67F3B57"));
 
         switch (params.getPlatformName())
         {

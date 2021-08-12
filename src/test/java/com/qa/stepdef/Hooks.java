@@ -21,7 +21,7 @@ public class Hooks {
     public void initialize() throws Exception {
         new DriverManager().closeApp();
         new DriverManager().launchApp();
-        new VideoManager().startRecording();
+        //new VideoManager().startRecording();
     }
 
     @After
@@ -33,7 +33,7 @@ public class Hooks {
            byte[] screenshot= new DriverManager().getDriver().getScreenshotAs(OutputType.BYTES);
            scenario.attach(screenshot,"img/png",scenario.getName());
         }
-        new VideoManager().stopRecording(scenario.getName());
+        //new VideoManager().stopRecording(scenario.getName());
 
 
     }
